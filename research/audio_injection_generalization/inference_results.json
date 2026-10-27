@@ -1,0 +1,22 @@
+{
+  "model_id": "Emvo-ai/voiceSHIELD-small",
+  "model_type": "VoiceSHIELD-Small",
+  "architecture": "Whisper-small encoder + mean-pool + MLP classifier head",
+  "license": "MIT",
+  "device": "cpu",
+  "load_time_s": 2.9857470989227295,
+  "synthetic_only": true,
+  "note": "PRELIMINARY SMOKE TEST \u2014 NOT a valid research evaluation. No results claimed.",
+  "results": [
+    {
+      "file": "synthetic_sine_wave.wav",
+      "duration_s": 2.0,
+      "sample_rate": 16000,
+      "label": "malicious",
+      "confidence": 0.5006333589553833,
+      "p_safe": 0.4993666112422943,
+      "p_malicious": 0.5006333589553833,
+      "inference_time_s": 1.44439697265625
+    }
+  ]
+}

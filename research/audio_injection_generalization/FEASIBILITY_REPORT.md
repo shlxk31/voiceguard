@@ -1,7 +1,7 @@
 # Feasibility Report — Audio Injection Generalization Study
 
 **Folder:** `research/audio_injection_generalization/`
-**Status:** Preliminary feasibility assessment (no experiments run yet)
+**Status:** Preliminary feasibility assessment — model loading verified; dataset access pending
 **Date:** 2026-10-27
 
 ---
@@ -187,8 +187,105 @@ This separation prevents threshold overfitting and mirrors the discipline used i
 
 ## 8. Next Steps (if GO)
 
-1. Add `transformers`, `safetensors`, `accelerate` to `requirements.txt`.
-2. Manually accept AudioAgentSecurity access conditions on Hugging Face.
-3. Download a small subset of AudioAgentSecurity audio.
-4. Run the smoke test (`smoke_test.py`) on those samples.
+1. Add `transformers`, `safetensors`, `accelerate` to `requirements.txt`. ✅ DONE
+2. Manually accept AudioAgentSecurity access conditions on Hugging Face. ⏳ PENDING
+3. Download a small subset of AudioAgentSecurity audio. ⏳ PENDING
+4. Run the smoke test (`smoke_test.py`) on those samples. ⏳ PENDING
 5. If the smoke test loads the model and returns labels, proceed to the full evaluation described in §4.
+
+---
+
+## 9. Model Loading Verification (2026-10-27)
+
+### What was verified
+
+VoiceSHIELD-Small loads and runs successfully on the local machine:
+
+| Property | Value |
+|----------|-------|
+| Model | Emvo-ai/voiceSHIELD-small |
+| Architecture | Whisper-small encoder + mean-pool + MLP classifier head |
+| License | MIT |
+| Device | CPU (Mac) |
+| Load time | ~3 seconds |
+| Inference time | ~1.4 seconds per 2-second clip |
+
+### Custom model code inspection
+
+The model uses custom code (`modeling_voiceshield.py`) that requires `trust_remote_code=True`. The downloaded code was inspected before execution:
+
+**File:** `~/.cache/huggingface/modules/transformers_modules/Emvo_hyphen_ai/voiceSHIELD_hyphen_small/*/modeling_voiceshield.py`
+
+**Finding:** The custom `VoiceShieldForAudioClassification.__init__()` calls `WhisperModel.from_pretrained(config.base_model)` internally without passing `device_map=None`. On this machine's transformers version (5.21.0), this triggers a `RuntimeError` about meta device context manager when loaded via `transformers.pipeline`.
+
+**Workaround:** The model components are loaded manually in `smoke_test.py`:
+1. Whisper-small encoder loaded separately via `WhisperModel.from_pretrained(..., device_map=None)`
+2. VoiceSHIELD classifier head built manually and weights loaded from `model.safetensors` via `safetensors.torch.load_file`
+
+This avoids the meta device bug and is safe because the custom code was reviewed before execution.
+
+### Smoke test result
+
+A smoke test was run on a synthetic 2-second sine-wave clip (NOT speech, NOT from AudioAgentSecurity):
+
+| File | Label | Confidence | P(safe) | P(malicious) |
+|------|-------|------------|---------|--------------|
+| synthetic_sine_wave.wav | malicious | 0.5006 | 0.4994 | 0.5006 |
+
+**This is an execution test only.** A sine wave is not speech, so any label is expected and NOT meaningful. No research results are claimed. Results saved to `research/audio_injection_generalization/inference_results.json`.
+
+---
+
+## 10. AudioAgentSecurity Access Instructions
+
+Access to AudioAgentSecurity is currently **blocked**. The Hugging Face dataset page states:
+
+> "You need to agree to share your Hugging Face information to access this dataset."
+
+### How to obtain access
+
+1. **Create a Hugging Face account** at https://huggingface.co/join (if you don't have one)
+2. **Log in** at https://huggingface.co/login
+3. **Visit the dataset page**: https://huggingface.co/datasets/Limax11/AudioAgentSecurity
+4. **Click "Agree and access"** or similar button to accept the dataset access conditions
+5. **Wait for approval** (may be automatic or require manual review by the dataset author)
+6. **Once approved**, download the dataset:
+   ```bash
+   .venv/bin/pip install huggingface_hub datasets
+   huggingface-cli login  # enter your HF token
+   huggingface-cli download Limax11/AudioAgentSecurity --repo-type dataset --local-dir research/audio_injection_generalization/audio/
+   ```
+   Or programmatically:
+   ```python
+   from datasets import load_dataset
+   ds = load_dataset("Limax11/AudioAgentSecurity")
+   ```
+
+### What to download
+
+The dataset layout expected by the evaluation:
+```
+research/audio_injection_generalization/audio/
+├── benchmark_dataset_mixed/
+│   ├── benign/                    # clean user speech (WAV)
+│   ├── mixed/
+│   │   ├── dialect/
+│   │   ├── dolphin/
+│   │   ├── foreign/
+│   │   ├── high_freq/
+│   │   ├── pulse/
+│   │   ├── spectral_inversion/
+│   │   ├── spectral_scramble/
+│   │   ├── speed/
+│   │   ├── texture/
+│   │   └── whisper/
+│   ├── benign_text_dataset.json
+│   ├── malicious_text_dataset.json
+│   └── metadata.json              # record-level labels
+```
+
+### Important restrictions
+
+- **Do not bypass access restrictions.** If access is not granted, do not attempt to download the dataset through unofficial means.
+- **Do not push downloaded audio to GitHub.** The `research/audio_injection_generalization/audio/` directory is gitignored.
+- **Dataset is for defensive security research only.** Do not use it to attack production systems.
