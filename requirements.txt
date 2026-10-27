@@ -13,3 +13,6 @@ av              # PyAV, for Opus/codec transcoding
 scikit-learn    # for GMM baseline + metrics (EER)
 matplotlib
 pytest
+transformers    # required by VoiceSHIELD-Small baseline (FEASIBILITY_REPORT.md)
+safetensors     # required by VoiceSHIELD-Small model weights
+accelerate      # required by VoiceSHIELD-Small inference

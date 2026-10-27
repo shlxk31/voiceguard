@@ -21,6 +21,9 @@ recordings/
 *.wav
 *.webm
 
+# Downloaded evaluation datasets (require manual HF agreement — do not commit)
+research/audio_injection_generalization/audio/
+
 # Binary report artifacts
 *.zip
 *.pptx
