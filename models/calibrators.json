@@ -1,0 +1,34 @@
+{
+  "L1": {
+    "slope": 6.176478302085624,
+    "intercept": -4.466058425878492,
+    "train_prior": 0.25,
+    "higher_is_genuine": true,
+    "layer_id": "L1",
+    "n_train": 400
+  },
+  "L3": {
+    "slope": -6.012587191580549,
+    "intercept": 2.0288891465777024,
+    "train_prior": 0.3333333333333333,
+    "higher_is_genuine": false,
+    "layer_id": "L3",
+    "n_train": 300
+  },
+  "L4": {
+    "slope": 3.6847068545027053,
+    "intercept": -0.801612780379799,
+    "train_prior": 0.5083333333333333,
+    "higher_is_genuine": true,
+    "layer_id": "L4",
+    "n_train": 120
+  },
+  "L2": {
+    "slope": -2.8685888189794664,
+    "intercept": 1.428421550378842,
+    "train_prior": 0.5,
+    "higher_is_genuine": false,
+    "layer_id": "L2",
+    "n_train": 30
+  }
+}

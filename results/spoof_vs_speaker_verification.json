@@ -1,0 +1,67 @@
+{
+  "n_speakers": 20,
+  "n_trials": 800,
+  "similarity": {
+    "genuine": {
+      "mean": 0.7264490240812301,
+      "median": 0.738600492477417,
+      "frac_ge_0.50": 0.995,
+      "frac_ge_0.75": 0.435
+    },
+    "spoof": {
+      "mean": 0.47570142249111086,
+      "median": 0.5214708149433136,
+      "frac_ge_0.50": 0.54,
+      "frac_ge_0.75": 0.0325
+    },
+    "imposter": {
+      "mean": 0.12410868891980499,
+      "median": 0.11848768964409828,
+      "frac_ge_0.50": 0.0,
+      "frac_ge_0.75": 0.0
+    }
+  },
+  "spoof_score": {
+    "genuine": {
+      "mean": 0.00034909808054059963,
+      "flagged_rate": 0.0
+    },
+    "spoof": {
+      "mean": 0.9394249290693552,
+      "flagged_rate": 0.87
+    },
+    "imposter": {
+      "mean": 0.0003415136128317542,
+      "flagged_rate": 0.0
+    }
+  },
+  "sv_eer_genuine_vs_imposter": 0.0,
+  "sv_eer_genuine_vs_spoof": 0.18625,
+  "aasist_threshold": 0.9157002568244934,
+  "authorization_by_tier": [
+    {
+      "tier": "< Rs.500",
+      "min_trust": 0,
+      "spoof_approved_sv_only_pct": 54.0,
+      "spoof_approved_with_antispoof_pct": 7.5
+    },
+    {
+      "tier": "Rs.500-2,000",
+      "min_trust": 50,
+      "spoof_approved_sv_only_pct": 54.0,
+      "spoof_approved_with_antispoof_pct": 7.5
+    },
+    {
+      "tier": "Rs.2,000-10,000",
+      "min_trust": 70,
+      "spoof_approved_sv_only_pct": 11.0,
+      "spoof_approved_with_antispoof_pct": 1.7500000000000002
+    },
+    {
+      "tier": "> Rs.10,000",
+      "min_trust": 85,
+      "spoof_approved_sv_only_pct": 0.0,
+      "spoof_approved_with_antispoof_pct": 0.0
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+.env
+.venv/
+__pycache__/
+*.pyc
+data/
+external/
+results/cache/
+*.wav.tmp
+
+# Large model checkpoints (regenerate via tests/finetune_*.py)
+*.pth
+
+# SpeechBrain ECAPA-TDNN checkpoints — downloaded automatically on first demo run
+# (savedir="models/ecapa" in demo_app.py / secure_voice_app.py). Symlinked here
+# from the local HF cache; do not commit absolute-path symlinks.
+models/ecapa/
+
+# Audio captures and recordings (user data, regenerate via demo)
+recordings/
+*.m4a
+*.wav
+*.webm
+
+# Binary report artifacts
+*.zip
+*.pptx
+report_phase3/
+
+# macOS
+.DS_Store

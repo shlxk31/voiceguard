@@ -1,0 +1,61 @@
+fusion_rule,subset,n_layers,threat,n,allow_pct,challenge_pct,deny_pct,error_pct,error_kind
+min,L1 only,1,genuine user,400,74.0,23.75,2.25,26.0,FRR
+min,L1 only,1,impostor (other human),400,0.25,60.0,39.75,0.25,FAR
+min,L1 only,1,replay of a recording,400,74.0,23.75,2.25,74.0,FAR
+min,L1 only,1,TTS / VC clone,400,43.25,41.0,15.75,43.25,FAR
+min,L1 only,1,prompt injection,400,23.5,65.5,11.0,23.5,FAR
+min,L1 only,1,social engineering,400,19.5,67.0,13.5,19.5,FAR
+min,L1 + L3,2,genuine user,400,74.0,23.75,2.25,26.0,FRR
+min,L1 + L3,2,impostor (other human),400,0.25,60.0,39.75,0.25,FAR
+min,L1 + L3,2,replay of a recording,400,74.0,23.75,2.25,74.0,FAR
+min,L1 + L3,2,TTS / VC clone,400,1.5,39.5,59.0,1.5,FAR
+min,L1 + L3,2,prompt injection,400,23.5,65.5,11.0,23.5,FAR
+min,L1 + L3,2,social engineering,400,19.5,67.0,13.5,19.5,FAR
+min,L1 + L2 + L3,3,genuine user,400,73.0,24.75,2.25,27.0,FRR
+min,L1 + L2 + L3,3,impostor (other human),400,0.25,60.0,39.75,0.25,FAR
+min,L1 + L2 + L3,3,replay of a recording,400,1.25,77.5,21.25,1.25,FAR
+min,L1 + L2 + L3,3,TTS / VC clone,400,1.5,39.5,59.0,1.5,FAR
+min,L1 + L2 + L3,3,prompt injection,400,23.5,65.5,11.0,23.5,FAR
+min,L1 + L2 + L3,3,social engineering,400,19.5,65.75,14.75,19.5,FAR
+min,L1 + L3 + L4,3,genuine user,400,62.0,26.0,12.0,38.0,FRR
+min,L1 + L3 + L4,3,impostor (other human),400,0.25,60.0,39.75,0.25,FAR
+min,L1 + L3 + L4,3,replay of a recording,400,62.0,26.0,12.0,62.0,FAR
+min,L1 + L3 + L4,3,TTS / VC clone,400,1.25,39.75,59.0,1.25,FAR
+min,L1 + L3 + L4,3,prompt injection,400,10.0,13.75,76.25,10.0,FAR
+min,L1 + L3 + L4,3,social engineering,400,7.25,14.75,78.0,7.25,FAR
+min,L1 + L2 + L3 + L4 (full),4,genuine user,400,61.25,26.75,12.0,38.75,FRR
+min,L1 + L2 + L3 + L4 (full),4,impostor (other human),400,0.25,60.0,39.75,0.25,FAR
+min,L1 + L2 + L3 + L4 (full),4,replay of a recording,400,1.25,77.5,21.25,1.25,FAR
+min,L1 + L2 + L3 + L4 (full),4,TTS / VC clone,400,1.25,39.75,59.0,1.25,FAR
+min,L1 + L2 + L3 + L4 (full),4,prompt injection,400,10.0,13.75,76.25,10.0,FAR
+min,L1 + L2 + L3 + L4 (full),4,social engineering,400,7.25,14.25,78.5,7.25,FAR
+sum,L1 only,1,genuine user,400,74.0,23.75,2.25,26.0,FRR
+sum,L1 only,1,impostor (other human),400,0.25,60.0,39.75,0.25,FAR
+sum,L1 only,1,replay of a recording,400,74.0,23.75,2.25,74.0,FAR
+sum,L1 only,1,TTS / VC clone,400,43.25,41.0,15.75,43.25,FAR
+sum,L1 only,1,prompt injection,400,23.5,65.5,11.0,23.5,FAR
+sum,L1 only,1,social engineering,400,19.5,67.0,13.5,19.5,FAR
+sum,L1 + L3,2,genuine user,400,95.25,4.75,0.0,4.75,FRR
+sum,L1 + L3,2,impostor (other human),400,52.25,35.5,12.25,52.25,FAR
+sum,L1 + L3,2,replay of a recording,400,95.25,4.75,0.0,95.25,FAR
+sum,L1 + L3,2,TTS / VC clone,400,2.75,39.75,57.5,2.75,FAR
+sum,L1 + L3,2,prompt injection,400,83.25,16.75,0.0,83.25,FAR
+sum,L1 + L3,2,social engineering,400,77.75,22.25,0.0,77.75,FAR
+sum,L1 + L2 + L3,3,genuine user,400,100.0,0.0,0.0,0.0,FRR
+sum,L1 + L2 + L3,3,impostor (other human),400,76.75,22.25,1.0,76.75,FAR
+sum,L1 + L2 + L3,3,replay of a recording,400,81.0,19.0,0.0,81.0,FAR
+sum,L1 + L2 + L3,3,TTS / VC clone,400,9.25,51.0,39.75,9.25,FAR
+sum,L1 + L2 + L3,3,prompt injection,400,99.25,0.75,0.0,99.25,FAR
+sum,L1 + L2 + L3,3,social engineering,400,100.0,0.0,0.0,100.0,FAR
+sum,L1 + L3 + L4,3,genuine user,400,97.5,2.5,0.0,2.5,FRR
+sum,L1 + L3 + L4,3,impostor (other human),400,65.25,25.25,9.5,65.25,FAR
+sum,L1 + L3 + L4,3,replay of a recording,400,97.5,2.5,0.0,97.5,FAR
+sum,L1 + L3 + L4,3,TTS / VC clone,400,11.75,42.75,45.5,11.75,FAR
+sum,L1 + L3 + L4,3,prompt injection,400,56.25,43.75,0.0,56.25,FAR
+sum,L1 + L3 + L4,3,social engineering,400,55.0,45.0,0.0,55.0,FAR
+sum,L1 + L2 + L3 + L4 (full),4,genuine user,400,100.0,0.0,0.0,0.0,FRR
+sum,L1 + L2 + L3 + L4 (full),4,impostor (other human),400,78.0,21.5,0.5,78.0,FAR
+sum,L1 + L2 + L3 + L4 (full),4,replay of a recording,400,85.75,14.25,0.0,85.75,FAR
+sum,L1 + L2 + L3 + L4 (full),4,TTS / VC clone,400,33.25,36.75,30.0,33.25,FAR
+sum,L1 + L2 + L3 + L4 (full),4,prompt injection,400,95.25,4.75,0.0,95.25,FAR
+sum,L1 + L2 + L3 + L4 (full),4,social engineering,400,94.25,5.75,0.0,94.25,FAR

@@ -1,0 +1,13 @@
+{
+  "dev_eer": 0.005129958334248643,
+  "eval_eer": 0.009924884662112065,
+  "threshold": 0.9157002568244934,
+  "accuracy_at_frozen_threshold_eval": 0.8887375942277187,
+  "n_dev": 24844,
+  "n_eval": 71237,
+  "mean_latency_ms_dev": 68.33609941553048,
+  "mean_latency_ms_eval": 67.006880755925,
+  "device": "mps",
+  "seed": 42,
+  "timestamp": "2026-09-06T16:13:27"
+}

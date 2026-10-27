@@ -1,0 +1,15 @@
+torch>=2.1
+torchaudio>=2.1
+speechbrain>=1.0
+numpy
+scipy
+librosa
+soundfile
+fastapi
+uvicorn[standard]
+python-multipart
+pydub
+av              # PyAV, for Opus/codec transcoding
+scikit-learn    # for GMM baseline + metrics (EER)
+matplotlib
+pytest
